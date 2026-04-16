@@ -1,0 +1,377 @@
+/* --- 1. CONFIGURAÇÕES GERAIS --- */
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: #f7bace; /* Rosa de fundo original */
+    margin: 0;
+    padding: 0;
+    color: #4a041a;
+}
+
+/* --- 2. CABEÇALHO E MENU (VOLTANDO AO LUGAR) --- */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    position: relative; /* Necessário para posicionar o menu no canto */
+}
+
+header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ad1457;
+    display: inline-block;
+    margin: 0;
+}
+
+/* Menu no canto direito sem os pontos pretos */
+.menu {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+
+.menu ul {
+    list-style: none; /* REMOVE OS PONTOS PRETOS */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #4a041a;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* --- 3. O BANNER DE DESTAQUE (CENTRALIZADO) --- */
+.boas-vindas {
+    background-color: #f8ccda; /* Rosa claro de destaque */
+    margin: 20px auto;
+    padding: 40px 20px;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.boas-vindas h2 {
+    font-family: 'Great Vibes', cursive; /* A letra artística delicada */
+    font-size: 3.8rem;
+    color: #880e4f;
+    margin: 0;
+}
+
+.boas-vindas p {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.tagline {
+    background-color: #880e4f;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* --- 4. VITRINE DE PRODUTOS (AJUSTE FINO) --- */
+.vitrine {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+.produto {
+    background: white;
+    padding: 20px;
+    border-radius: 25px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    
+    /* Configuração para alinhar o botão */
+    display: flex;
+    flex-direction: column;
+    
+    /* Diminuímos a altura total para reduzir o espaço vazio */
+    min-height: 440px; 
+}
+
+.produto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 15px; /* Espaço entre imagem e título */
+}
+
+.produto h3 {
+    margin: 5px 0; /* Diminui o espaço em volta do título */
+    color: #4a041a;
+}
+
+.produto p {
+    flex-grow: 1; /* Preenche o espaço suavemente */
+    margin: 5px 0 15px 0; /* Menos espaço em cima, mais espaço antes do preço */
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.preco {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.botao-comprar {
+    display: block;
+    background-color: #25d366;
+    color: white;
+    padding: 12px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    
+    /* Mantém o botão no fundo, mas o min-height menor evita o vácuo */
+    margin-top: auto; 
+}
+/* --- 5. PÁGINAS INTERNAS (SOMOS NÓS / ORÇAMENTO) --- */
+.conteudo-sobre, .conteudo-paginas {
+    background: white;
+    margin: 40px auto;
+    padding: 40px;
+    width: 85%;
+    max-width: 800px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+/* Remove pontos pretos das listas internas também */
+.conteudo-sobre ul {
+    list-style: none;
+    padding: 0;
+}
+/* --- ESTILO PARA DAR VIDA AO SOBRE NÓS --- */
+.conteudo-sobre h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: #880e4f;
+    margin-bottom: 20px;
+}
+
+.historia-texto p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.diferenciais {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed #ad1457;
+}
+
+.diferenciais h3 {
+    color: #ad1457;
+    margin-bottom: 20px;
+}
+
+.diferenciais ul {
+    text-align: left;
+    display: inline-block;
+    list-style: none; /* Garante que os pontos pretos não voltem */
+}
+
+.diferenciais li {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+/* --- ESTILO DO FORMULÁRIO DE ORÇAMENTO --- */
+.formulario-orcamento {
+    margin-top: 30px;
+    text-align: left;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #4a041a;
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #fca7c4;
+    border-radius: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.botao-enviar {
+    width: 100%;
+    background-color: #880e4f;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-enviar:hover {
+    background-color: #ad1457;
+    transform: scale(1.02);
+}
+/* --- ESTILO DO ATELIÊ BELLA --- */
+.personalizador {
+    background: #fff;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(136, 14, 79, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.bloco-personalizar {
+    margin-bottom: 30px;
+    text-align: left;
+    border-bottom: 1px solid #fca7c4;
+    padding-bottom: 20px;
+}
+
+.campo-range {
+    margin: 20px 0;
+}
+
+.campo-range input {
+    width: 100%;
+    accent-color: #880e4f;
+}
+
+.grid-opcoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.item-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.resultado-atelie {
+    background: #fdf2f5;
+    padding: 25px;
+    border-radius: 20px;
+}
+
+
+.julia-avatar {
+    width: 60px;
+    height: 60px;
+    background: #880e4f;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border: 3px solid white;
+}
+
+
+/* --- NOVA JANELA DA JÚLIA --- */
+#julia-chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.janela-chat {
+    display: none; /* Começa escondida */
+    width: 280px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+    overflow: hidden;
+    border: 2px solid #880e4f;
+}
+
+.header-chat {
+    background: #880e4f;
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.corpo-chat {
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.lista-botoes button {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 10px;
+    background: #fdf2f5;
+    border: 1px solid #f8bbd0;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #880e4f;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lista-botoes button:hover {
+    background: #880e4f;
+    color: white;
+}
+
+.julia-avatar {
+    width: 60px;
+    height: 60px;
+    background: #880e4f;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    float: right;
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ateliê Bella - Monte seu Camarim</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>BELLA PENTEADEIRA</h1>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="atelie.html" style="color: #ad1457; font-weight: bold;">Ateliê</a></li>
+                <li><a href="contato.html">Orçamentos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="conteudo-paginas">
+        <h2 style="font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #880e4f;">Ateliê Bella</h2>
+        <p>Arraste e selecione as opções para projetar seu camarim dos sonhos!</p>
+
+        <section class="personalizador">
+            <div class="bloco-personalizar">
+                <h3>1. Dimensões (Largura e Altura)</h3>
+                <div class="campo-range">
+                    <label>Largura: <span id="txt-largura">100</span>cm</label>
+                    <input type="range" min="80" max="170" value="100" id="range-largura" oninput="atualizarAtelie()">
+                </div>
+                <div class="campo-range">
+                    <label>Altura: <span id="txt-altura">100</span>cm</label>
+                    <input type="range" min="80" max="170" value="100" id="range-altura" oninput="atualizarAtelie()">
+                </div>
+            </div>
+
+            <div class="bloco-personalizar">
+                <h3>2. Detalhes e Acabamentos</h3>
+                <div class="grid-opcoes">
+                    <label class="item-check">
+                        <input type="checkbox" id="check-rodinhas" onchange="atualizarAtelie()"> 
+                        <span>Rodinhas (+R$ 80)</span>
+                    </label>
+                    <label class="item-check">
+                        <input type="checkbox" id="check-vidro" onchange="atualizarAtelie()"> 
+                        <span>Tampo de Vidro Inteiro (+R$ 100)</span>
+                    </label>
+                    <label class="item-check">
+                        <input type="checkbox" id="check-lampadas" onchange="atualizarAtelie()"> 
+                        <span>Moldura com Lâmpadas (+R$ 100)</span>
+                    </label>
+                    <label class="item-check">
+                        <input type="checkbox" id="check-led" onchange="atualizarAtelie()"> 
+                        <span>Espelho com LED (+R$ 250)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="resultado-atelie">
+                <p>Valor Estimado do Projeto:</p>
+                <h2 id="total-atelie">R$ 0,00</h2>
+                <button onclick="enviarProjeto()" class="botao-enviar">Reservar este Projeto com a Júlia</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="julia-chat-container">
+        <div id="janela-julia" class="janela-chat">
+            <div class="header-chat">
+                <span>Júlia - Atendimento</span>
+                <span onclick="toggleChat()" style="cursor:pointer">✖</span>
+            </div>
+            <div id="corpo-chat" class="corpo-chat">
+                <p>Oi! Eu sou a Júlia. Como posso te ajudar hoje?</p>
+                <div class="lista-botoes">
+                    <button onclick="responderJulia('medidas')">Como medir meu quarto?</button>
+                    <button onclick="responderJulia('cores')">Quais cores vocês têm?</button>
+                    <button onclick="responderJulia('contato')">Falar com uma pessoa real</button>
+                </div>
+            </div>
+        </div>
+        <div class="julia-avatar" onclick="toggleChat()">J</div>
+    </div>
+
+<script>
+// --- FUNÇÃO DE CÁLCULO REALISTA ---
+function atualizarAtelie() {
+    // Captura os valores dos sliders
+    const largura = parseInt(document.getElementById('range-largura').value);
+    const altura = parseInt(document.getElementById('range-altura').value);
+    
+    // Atualiza os textos dos cm na tela
+    document.getElementById('txt-largura').innerText = largura;
+    document.getElementById('txt-altura').innerText = altura;
+
+    // LÓGICA DE PREÇO:
+    // Taxa base (mão de obra e ferragens fixas)
+    const taxaBase = 450; 
+    // Preço por área (cm²). 0.05 faz uma 100x100 custar +500 reais de material.
+    const custoMaterial = (largura * altura) * 0.05;
+
+    let total = taxaBase + custoMaterial;
+
+    // Soma os opcionais selecionados
+    if (document.getElementById('check-rodinhas').checked) total += 80;
+    if (document.getElementById('check-vidro').checked) total += 100;
+    if (document.getElementById('check-lampadas').checked) total += 100;
+    if (document.getElementById('check-led').checked) total += 250;
+
+    // Formata e exibe o preço final
+    document.getElementById('total-atelie').innerText = `R$ ${total.toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
+}
+
+// Envia os dados escolhidos para o WhatsApp
+function enviarProjeto() {
+    const largura = document.getElementById('range-largura').value;
+    const altura = document.getElementById('range-altura').value;
+    const total = document.getElementById('total-atelie').innerText;
+    
+    const mensagem = encodeURIComponent(`Olá Bella Penteadeira! Montei um projeto no Ateliê:\n- Tamanho: ${largura}x${altura}cm\n- Valor Estimado: ${total}\nGostaria de finalizar meu pedido!`);
+    window.open(`https://wa.me/5511950802253?text=${mensagem}`, '_blank');
+}
+
+// --- FUNÇÕES DA JÚLIA ---
+function toggleChat() {
+    const janela = document.getElementById('janela-julia');
+    janela.style.display = (janela.style.display === 'block') ? 'none' : 'block';
+}
+
+function responderJulia(tipo) {
+    const corpo = document.getElementById('corpo-chat');
+    if(tipo === 'medidas') {
+        corpo.innerHTML = "<p><strong>Júlia:</strong> Use uma fita métrica. O ideal é que a penteadeira tenha pelo menos 10cm de folga lateral!</p><button onclick='resetChat()' style='width:100%; padding:8px; margin-top:10px; cursor:pointer;'>Voltar</button>";
+    } else if(tipo === 'cores') {
+        corpo.innerHTML = "<p><strong>Júlia:</strong> Temos Branco Neve, Rosa Quartz e Off-White em laca premium!</p><button onclick='resetChat()' style='width:100%; padding:8px; margin-top:10px; cursor:pointer;'>Voltar</button>";
+    } else if(tipo === 'contato') {
+        window.open('https://wa.me/5511950802253?text=Olá! Gostaria de falar com uma consultora.', '_blank');
+    }
+}
+
+function resetChat() {
+    document.getElementById('corpo-chat').innerHTML = `
+        <p>Oi! Eu sou a Júlia. Como posso te ajudar hoje?</p>
+        <div class="lista-botoes">
+            <button onclick="responderJulia('medidas')">Como medir meu quarto?</button>
+            <button onclick="responderJulia('cores')">Quais cores vocês têm?</button>
+            <button onclick="responderJulia('contato')">Falar com uma pessoa real</button>
+        </div>`;
+}
+
+// Inicia o cálculo automaticamente ao abrir a página
+window.onload = atualizarAtelie;
+</script>
+
+</body>
+</html>

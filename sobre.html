@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa História - Bella Penteadeira</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Bella Penteadeira</h1>
+        <nav class="menu">
+    <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre Nós</a></li>
+        <li><a href="atelie.html">Ateliê</a></li> <li><a href="contato.html">Orçamentos</a></li>
+    </ul>
+</nav>
+    </header>
+
+    <main class="conteudo-sobre">
+    <h2>Nossa História</h2>
+    
+    <div class="historia-texto">
+        <p>A <strong>Bella Penteadeira</strong> nasceu do desejo de transformar o momento de se cuidar em uma experiência de luxo cotidiana.</p>
+        <p>Não vendemos apenas móveis; entregamos o cenário onde você se prepara para conquistar o mundo. Cada detalhe, desde a escolha da madeira até a instalação da iluminação perfeita, é pensado para refletir a sua beleza.</p>
+    </div>
+
+    <div class="diferenciais">
+        <h3>Por que escolher a Bella?</h3>
+        <ul>
+            <li><span class="icone">✨</span> <strong>Design Exclusivo:</strong> Móveis que combinam com sua personalidade.</li>
+            <li><span class="icone">💡</span> <strong>Iluminação Profissional:</strong> Luzes que valorizam sua maquiagem.</li>
+            <li><span class="icone">🚚</span> <strong>Entrega Garantida:</strong> Cuidado total até o seu quarto.</li>
+        </ul>
+    </div>
+     </main> 
+  <div id="julia-chat-container">
+    <div id="janela-julia" class="janela-chat">
+        <div class="header-chat">
+            <span>Júlia - Nossa História</span>
+            <span onclick="toggleChat()" style="cursor:pointer">✖</span>
+        </div>
+        <div id="corpo-chat" class="corpo-chat">
+            <p>Oi! Adorei que você quer conhecer nossa história. O que mais te interessa?</p>
+            <div class="lista-botoes">
+                <button onclick="responderJulia('material')">Qual o material das penteadeiras?</button>
+                <button onclick="responderJulia('seguranca')">É seguro comprar pelo site?</button>
+                <button onclick="responderJulia('onde')">Onde vocês estão localizados?</button>
+            </div>
+        </div>
+    </div>
+    <div class="julia-avatar" onclick="toggleChat()">J</div>
+</div>
+
+<script>
+function toggleChat() {
+    const janela = document.getElementById('janela-julia');
+    janela.style.display = (janela.style.display === 'block') ? 'none' : 'block';
+}
+
+function responderJulia(tipo) {
+    const corpo = document.getElementById('corpo-chat');
+    
+    if(tipo === 'material') {
+        corpo.innerHTML = `
+            <p><strong>Júlia:</strong> Usamos 100% MDF de alta densidade com acabamento em laca premium. É móvel para a vida toda, não é aglomerado!</p>
+            <button onclick="resetChat()" style="width:100%; margin-top:10px; cursor:pointer; background:#880e4f; color:white; border:none; padding:8px; border-radius:5px;">Voltar</button>
+        `;
+    } else if(tipo === 'seguranca') {
+        corpo.innerHTML = `
+            <p><strong>Júlia:</strong> Totalmente! Temos centenas de clientes satisfeitas e usamos pagamento seguro. Seus dados e seu sonho estão protegidos aqui.</p>
+            <button onclick="resetChat()" style="width:100%; margin-top:10px; cursor:pointer; background:#880e4f; color:white; border:none; padding:8px; border-radius:5px;">Voltar</button>
+        `;
+    } else if(tipo === 'onde') {
+        corpo.innerHTML = `
+            <p><strong>Júlia:</strong> Nossa produção fica em São Paulo, mas entregamos com transportadora especializada em móveis para todo o Brasil!</p>
+            <button onclick="resetChat()" style="width:100%; margin-top:10px; cursor:pointer; background:#880e4f; color:white; border:none; padding:8px; border-radius:5px;">Voltar</button>
+        `;
+    }
+}
+
+function resetChat() {
+    document.getElementById('corpo-chat').innerHTML = `
+        <p>Oi! Adorei que você quer conhecer nossa história. O que mais te interessa?</p>
+        <div class="lista-botoes">
+            <button onclick="responderJulia('material')">Qual o material das penteadeiras?</button>
+            <button onclick="responderJulia('seguranca')">É seguro comprar pelo site?</button>
+            <button onclick="responderJulia('onde')">Onde vocês estão localizados?</button>
+        </div>`;
+}
+</script>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento - Bella Penteadeira</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre Nós</a></li>
+            <li><a href="atelie.html">Ateliê</a></li> 
+            <li><a href="contato.html">Orçamentos</a></li>
+        </ul>
+    </nav>
+
+    <main class="conteudo-paginas">
+        <h2>Solicite seu Orçamento</h2>
+        <p>Escolha o modelo dos seus sonhos e veja o valor na hora!</p>
+        
+        <form class="formulario-orcamento" id="form-orcamento">
+            <div class="campo">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" required placeholder="Digite seu nome">
+            </div>
+            
+            <div class="campo">
+                <label for="modelo">Selecione o Modelo:</label>
+                <select id="modelo" onchange="calcularPreco()">
+                    <option value="0" disabled selected>Escolha uma opção...</option>
+                    <option value="1100">Penteadeira Clássica</option>
+                    <option value="2300">Penteadeira Camarim Luxo</option>
+                    <option value="2500">Penteadeira Camarim Espelhada</option>
+                </select>
+            </div>
+
+            <div id="caixa-preco" style="display: none; background: #fff; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px; border: 2px solid #880e4f; box-shadow: 0 5px 15px rgba(136, 14, 79, 0.1);">
+                <span style="color: #4a041a; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">Valor do Investimento:</span>
+                <h3 id="resultado-preco" style="color: #880e4f; font-size: 2.5rem; margin: 5px 0; font-family: 'Playfair Display', serif;">R$ 0,00</h3>
+            </div>
+
+            <button type="button" onclick="enviarWhatsApp()" class="botao-enviar">Falar com Consultora no WhatsApp</button>
+        </form>
+    </main>
+
+    <div id="julia-chat-container">
+        <div id="janela-julia" class="janela-chat">
+            <div class="header-chat">
+                <span>Júlia - Orçamentos</span>
+                <span onclick="toggleChat()" style="cursor:pointer">✖</span>
+            </div>
+            <div id="corpo-chat" class="corpo-chat">
+                <p>Oi! Dúvidas sobre o seu orçamento?</p>
+                <div class="lista-botoes">
+                    <button onclick="responderJulia('prazo')">Qual o prazo de entrega?</button>
+                    <button onclick="responderJulia('pagamento')">Formas de pagamento</button>
+                    <button onclick="responderJulia('frete')">Como funciona o frete?</button>
+                </div>
+            </div>
+        </div>
+        <div class="julia-avatar" onclick="toggleChat()">J</div>
+    </div>
+
+    <script>
+        // Lógica do Orçamento
+        function calcularPreco() {
+            const select = document.getElementById('modelo');
+            const valor = select.value;
+            const caixaPreco = document.getElementById('caixa-preco');
+            const displayPreco = document.getElementById('resultado-preco');
+            if (valor > 0) {
+                caixaPreco.style.display = 'block';
+                displayPreco.innerHTML = `R$ ${parseFloat(valor).toLocaleString('pt-br', {minimumFractionDigits: 2})}`;
+            }
+        }
+
+        function enviarWhatsApp() {
+            const nome = document.getElementById('nome').value;
+            const modeloSelect = document.getElementById('modelo');
+            const modeloTexto = modeloSelect.options[modeloSelect.selectedIndex].text;
+            const valor = modeloSelect.value;
+            if (!nome || valor == "0") {
+                alert("Por favor, preencha seu nome e escolha um modelo!");
+                return;
+            }
+            const mensagem = encodeURIComponent(`Olá Bella Penteadeira! Meu nome é ${nome}. Gostei da ${modeloTexto} e gostaria de saber mais sobre o orçamento.`);
+            window.open(`https://wa.me/5511950802253?text=${mensagem}`, '_blank');
+        }
+
+        // Lógica da Júlia Contextual
+        function toggleChat() {
+            const janela = document.getElementById('janela-julia');
+            janela.style.display = (janela.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function responderJulia(tipo) {
+            const corpo = document.getElementById('corpo-chat');
+            if(tipo === 'prazo') {
+                corpo.innerHTML = "<p><strong>Júlia:</strong> Produzimos em 15 a 20 dias úteis com todo carinho!</p><button onclick='resetChat()' style='width:100%; margin-top:10px; cursor:pointer;'>Voltar</button>";
+            } else if(tipo === 'pagamento') {
+                corpo.innerHTML = "<p><strong>Júlia:</strong> Aceitamos Cartão (12x), PIX ou Boleto Bancário.</p><button onclick='resetChat()' style='width:100%; margin-top:10px; cursor:pointer;'>Voltar</button>";
+            } else if(tipo === 'frete') {
+                corpo.innerHTML = "<p><strong>Júlia:</strong> Enviamos via transportadora especializada com seguro total.</p><button onclick='resetChat()' style='width:100%; margin-top:10px; cursor:pointer;'>Voltar</button>";
+            }
+        }
+
+        function resetChat() {
+            document.getElementById('corpo-chat').innerHTML = `
+                <p>Oi! Dúvidas sobre o seu orçamento?</p>
+                <div class="lista-botoes">
+                    <button onclick="responderJulia('prazo')">Qual o prazo de entrega?</button>
+                    <button onclick="responderJulia('pagamento')">Formas de pagamento</button>
+                    <button onclick="responderJulia('frete')">Como funciona o frete?</button>
+                </div>`;
+        }
+    </script>
+</body>
+</html>

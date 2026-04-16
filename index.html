@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Penteadeira - Sua Beleza em Destaque</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <header>
+        <h1>Bella Penteadeira</h1>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html" style="color: #ad1457; font-weight: bold;">Início</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li><a href="atelie.html">Ateliê</a></li> <li><a href="contato.html">Orçamentos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="boas-vindas">
+        <h2>Transforme seu Cantinho de Beleza</h2>
+        <p>Penteadeiras exclusivas, feitas com carinho para quem ama se cuidar.</p>
+        <span class="tagline">Qualidade premium • Iluminação perfeita • Entrega garantida</span>
+    </section>
+
+    <main class="vitrine">
+        <div class="produto">
+            <img src="imagens/produto1.jpg" alt="Penteadeira Clássica">
+            <h2>Penteadeira Clássica</h2>
+            <p>Penteadeira grande e espaçosa para melhorar o seu conforto no dia a dia.</p>
+            
+            <a href="https://wa.me/5511950802253" class="botao-comprar">Comprar</a>
+        </div>
+
+        <div class="produto">
+            <img src="imagens/produto2.jpg" alt="Penteadeira Camarim Luxo">
+            <h2>Camarim Luxo</h2>
+            <p>Penteadeira bem iluminada para trazer luz e beleza para o seu ambiente.</p>
+            
+            <a href="https://wa.me/5511950802253" class="botao-comprar">Comprar</a>
+        </div>
+
+        <div class="produto">
+            <img src="imagens/produto3.jpg" alt="Penteadeira Espelhada">
+            <h2>Camarim Espelhada</h2>
+            <p>Penteadeira chique, elegante e totalmente espelhada para o seu quarto.</p>
+         
+            <a href="https://wa.me/5511950802253" class="botao-comprar">Comprar</a>
+        </div>
+    </main>
+<div id="julia-chat-container">
+    <div id="janela-julia" class="janela-chat">
+        <div class="header-chat">
+            <span>Júlia - Início</span>
+            <span onclick="toggleChat()" style="cursor:pointer">✖</span>
+        </div>
+        <div id="corpo-chat" class="corpo-chat">
+            <p>Oi! Que bom ter você aqui. Como posso te ajudar hoje?</p>
+            <div class="lista-botoes">
+                <button onclick="responderJulia('orcamento')">Fazer um orçamento</button>
+                <button onclick="responderJulia('comprar')">Comprar uma penteadeira</button>
+                <button onclick="responderJulia('marca')">Conhecer nossa marca</button>
+                <button onclick="responderJulia('montar')">Montar meu projeto (Ateliê)</button>
+            </div>
+        </div>
+    </div>
+    <div class="julia-avatar" onclick="toggleChat()">J</div>
+</div>
+
+<script>
+function toggleChat() {
+    const janela = document.getElementById('janela-julia');
+    janela.style.display = (janela.style.display === 'block') ? 'none' : 'block';
+}
+
+function responderJulia(tipo) {
+    const corpo = document.getElementById('corpo-chat');
+    
+    if(tipo === 'orcamento') {
+        corpo.innerHTML = `
+            <p><strong>Júlia:</strong> Ótima escolha! No nosso simulador você vê o valor na hora.</p>
+            <button onclick="window.location.href='contato.html'" style="width:100%; background:#880e4f; color:white; padding:10px; border-radius:8px; cursor:pointer; border:none; margin-top:10px;">Ir para Orçamentos</button>
+            <button onclick="resetChat()" style="width:100%; margin-top:5px; cursor:pointer; background:none; border:none; color:#880e4f; font-size:0.8rem;">Voltar</button>
+        `;
+    } else if(tipo === 'comprar') {
+        corpo.innerHTML = "<p><strong>Júlia:</strong> Temos modelos incríveis logo abaixo! Role a página para ver nossas queridinhas em estoque.</p><button onclick='resetChat()' style='width:100%; margin-top:10px; cursor:pointer;'>Voltar</button>";
+    } else if(tipo === 'marca') {
+        corpo.innerHTML = `
+            <p><strong>Júlia:</strong> Adoraria te contar nossa história de luxo e carinho!</p>
+            <button onclick="window.location.href='sobre.html'" style="width:100%; background:#880e4f; color:white; padding:10px; border-radius:8px; cursor:pointer; border:none; margin-top:10px;">Ler Sobre Nós</button>
+            <button onclick="resetChat()" style="width:100%; margin-top:5px; cursor:pointer; background:none; border:none; color:#880e4f; font-size:0.8rem;">Voltar</button>
+        `;
+    } else if(tipo === 'montar') {
+        corpo.innerHTML = `
+            <p><strong>Júlia:</strong> No Ateliê Bella você personaliza tudo do seu jeito. Vamos criar?</p>
+            <button onclick="window.location.href='atelie.html'" style="width:100%; background:#880e4f; color:white; padding:10px; border-radius:8px; cursor:pointer; border:none; margin-top:10px;">Ir para o Ateliê</button>
+            <button onclick="resetChat()" style="width:100%; margin-top:5px; cursor:pointer; background:none; border:none; color:#880e4f; font-size:0.8rem;">Voltar</button>
+        `;
+    }
+}
+
+function resetChat() {
+    document.getElementById('corpo-chat').innerHTML = `
+        <p>Oi! Que bom ter você aqui. Como posso te ajudar hoje?</p>
+        <div class="lista-botoes">
+            <button onclick="responderJulia('orcamento')">Fazer um orçamento</button>
+            <button onclick="responderJulia('comprar')">Comprar uma penteadeira</button>
+            <button onclick="responderJulia('marca')">Conhecer nossa marca</button>
+            <button onclick="responderJulia('montar')">Montar meu projeto (Ateliê)</button>
+        </div>`;
+}
+</script>
+</body>
+</html>
